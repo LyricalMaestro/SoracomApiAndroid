@@ -30,10 +30,10 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.lyricaloriginal'
-version = '1.0.0' // library version
+version = '1.0.1'// library version
 
-def siteUrl = 'https://github.com/bintray/bintray-examples'
-def gitUrl = 'https://github.com/bintray/bintray-examples.git'
+def siteUrl = 'https://github.com/LyricalMaestro/SoracomApiAndroid'
+def gitUrl = 'https://github.com/LyricalMaestro/SoracomApiAndroid.git'
 
 bintray {
     user = bintray_user
@@ -45,10 +45,17 @@ bintray {
         name = project.name
         desc = 'Soracom Api'
         websiteUrl = siteUrl
-        issueTrackerUrl = 'https://github.com/bintray/bintray-examples/issues'
+        issueTrackerUrl = 'https://github.com/LyricalMaestro/SoracomApiAndroid/issues'
         vcsUrl = gitUrl
         licenses = ['Apache-2.0']
         labels = ['android', 'soracom']
+        version {
+            name = version
+            gpg {
+                sign = true
+                passphrase = bintray_gpg_password
+            }
+        }
         publicDownloadNumbers = true
     }
 }
@@ -74,8 +81,8 @@ install {
                     }
                 }
                 scm {
-                    connection 'https://github.com/bintray/bintray-examples.git'
-                    developerConnection 'https://github.com/bintray/bintray-examples.git'
+                    connection 'https://github.com/LyricalMaestro/SoracomApiAndroid.git'
+                    developerConnection 'https://github.com/LyricalMaestro/SoracomApiAndroid.git'
                     url siteUrl
 
                 }
