@@ -1,0 +1,108 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+    lintOptions {
+        lintConfig file('lint.xml')
+    }
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = 'com.lyricaloriginal'
+version = '1.0.0' // library version
+
+def siteUrl = 'https://github.com/bintray/bintray-examples'
+def gitUrl = 'https://github.com/bintray/bintray-examples.git'
+
+bintray {
+    user = bintray_user
+    key = bintray_apikey
+
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = 'maven'
+        name = project.name
+        desc = 'Soracom Api'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/bintray/bintray-examples/issues'
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['android', 'soracom']
+        publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'soracom-api-sample'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'lyricalmaestro'
+                        name 'Maestro'
+                        email ''
+                    }
+                }
+                scm {
+                    connection 'https://github.com/bintray/bintray-examples.git'
+                    developerConnection 'https://github.com/bintray/bintray-examples.git'
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
+}
