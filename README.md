@@ -65,7 +65,6 @@ call.enqueue(new Callback<AuthInfo> (){
 
 ```java
 AuthInfo authInfo; // authの実行により得られたオブジェクト
-
 Call<List<Subscriber>> call = Soracom.API.subscribers(authInfo.apiKey, authInfo.token);
 Response<List<Subscriber>> response = call.execute();
 List<Subscriber> subscribers = response.body();
