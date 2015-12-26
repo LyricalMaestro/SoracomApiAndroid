@@ -29,7 +29,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.lyricaloriginal'
-version = '1.0.2'// library version
+version = '1.0.3'// library version
 
 def siteUrl = 'https://github.com/LyricalMaestro/SoracomApiAndroid'
 def gitUrl = 'https://github.com/LyricalMaestro/SoracomApiAndroid.git'
