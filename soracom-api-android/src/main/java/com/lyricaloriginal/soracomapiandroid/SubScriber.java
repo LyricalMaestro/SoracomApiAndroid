@@ -1,6 +1,8 @@
 package com.lyricaloriginal.soracomapiandroid;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by LyricalMaestro on 2015/12/22.
@@ -15,6 +17,10 @@ public class SubScriber {
      * MSISDN
      */
     public String msisdn;
+    /**
+     * 製造番号
+     */
+    public String serialNumber;
     /**
      * 確保済みIPアドレス
      */
@@ -36,6 +42,10 @@ public class SubScriber {
      */
     public BigDecimal lastModifiedAt;
     /**
+     * 有効期限
+     */
+    public BigDecimal expiredAt;
+    /**
      * グループID
      */
     public String groupId;
@@ -46,20 +56,16 @@ public class SubScriber {
     /**
      * 有効期限。
      */
-    public BigDecimal expirtyTime;
+    public BigDecimal expiryTime;
     /**
      * ステータス。状態。<BR>
      * 「準備完了」、「使用中」、「休止中」など。
      */
     public String status;
     /**
-     * タグ情報
+     * プラン??
      */
-    public Tags tags;
-    /**
-     * セッション状態
-     */
-    public SessionStatus sessionStatus;
+    public int plan;
     /**
      * OperatorId
      */
@@ -71,24 +77,27 @@ public class SubScriber {
     public String moduleType;
 
     /**
-     * タグ情報をまとめたクラスです。
+     * タグ情報
      */
-    public static class Tags {
-        /**
-         * 名前
-         */
-        public String name;
-    }
+    public Map<String, String> tags = new HashMap<String, String>();
+    /**
+     * セッション状態
+     */
+    public SessionStatus sessionStatus;
 
     public static class SessionStatus {
         /**
          * 最終更新日時
          */
-        public BigDecimal lastUpdateAt;
+        public BigDecimal lastUpdatedAt;
         /**
          * IMEI
          */
         public String imei;
+
+        public String location;
+
+        public String dnsServers;
         /**
          * オンラインかどうか
          */
@@ -97,5 +106,6 @@ public class SubScriber {
          * IDアドレスだけど…?
          */
         public String ueIpAddress;
+
     }
 }
