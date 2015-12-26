@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 登録中のSIM情報をまとめたクラスです。
+ * <p/>
  * Created by LyricalMaestro on 2015/12/22.
  */
 public class SubScriber {

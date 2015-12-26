@@ -1,6 +1,8 @@
 package com.lyricaloriginal.soracomapiandroid;
 
 /**
+ * authメソッドのリクエストjsonをモデル化したクラスです。
+ * <p/>
  * Created by LyricalMaestro on 2015/12/22.
  */
 public class AuthRequest {
@@ -16,8 +18,8 @@ public class AuthRequest {
     /**
      * コンストラクタ
      *
-     * @param email
-     * @param password
+     * @param email    emailアドレス
+     * @param password パスワード
      */
     public AuthRequest(String email, String password) {
         this.email = email;
