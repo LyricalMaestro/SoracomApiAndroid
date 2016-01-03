@@ -10,6 +10,7 @@ import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 /**
  * Soracom APIをまとめたクラスです。
@@ -17,7 +18,7 @@ import retrofit.http.Path;
  * Created by LyricalMaestro on 2015/12/22.
  */
 public final class Soracom {
-    
+
     /**
      * APIメソッドをまとめたオブジェクトです。<BR>
      * このクラスのメソッドを呼び出した時点でサーバへの問い合わせはしません。
@@ -163,6 +164,31 @@ public final class Soracom {
                 @Header("X-Soracom-API-Key") String apiKey,
                 @Header("X-Soracom-Token") String token,
                 @Path("imsi") String imsi
+        );
+
+        /*
+            Stats
+         */
+
+        /**
+         * IMSI で指定した Subscriber の通信量履歴を取得する。
+         *
+         * @param apiKey APIキー
+         * @param token  Token
+         * @param imsi   対象IMSI
+         * @param from   集計対象時刻の始まり。unixtimeで指定。
+         * @param to     集計対象時刻の終わり。unixtimeで指定。
+         * @param period 集計単位。"month","day","minutes"のいずれかを指定。minutesはminutesは5分おき。
+         * @return callオブジェクト
+         */
+        @GET("stats/air/subscribers/{imsi}")
+        Call<List<AirStats>> airSubscribers(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Path("imsi") String imsi,
+                @Query("from") int from,
+                @Query("to") int to,
+                @Query("period") String period
         );
     }
 }
