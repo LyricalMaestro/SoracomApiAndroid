@@ -12,15 +12,15 @@ public class AirStats {
     /**
      * 対象日時。periodの指定によって値のフォーマットが変わる。
      */
-    String date;
+    public String date;
     /**
      * 対象日時のUnixTime。
      */
-    int unixtime;
+    public int unixtime;
     /**
      * 実際の通信量履歴まとめ。速度クラス別に集計される。
      */
-    Map<String, TrafficStats> dataTrafficStatsMap = new HashMap<String, TrafficStats>();
+    public Map<String, TrafficStats> dataTrafficStatsMap = new HashMap<String, TrafficStats>();
 
     @Override
     public String toString() {
