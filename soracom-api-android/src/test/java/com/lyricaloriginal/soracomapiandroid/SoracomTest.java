@@ -1,13 +1,12 @@
 package com.lyricaloriginal.soracomapiandroid;
 
-import android.support.test.runner.AndroidJUnit4;
+import android.content.Context;
 import android.util.Log;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,15 +14,10 @@ import java.util.List;
 import retrofit.Call;
 import retrofit.Response;
 
-
 /**
- * 動作確認用クラス。
- * <p/>
- * Created by LyricalMaestro on 2016/01/03.
+ * Created by LyricalMaestro on 2016/03/02.
  */
-@RunWith(AndroidJUnit4.class)
 public class SoracomTest {
-
     private final String EMAIL = "YOUR_EMAIL";
     private final String password = "YOUR_PASSWORD";
 
