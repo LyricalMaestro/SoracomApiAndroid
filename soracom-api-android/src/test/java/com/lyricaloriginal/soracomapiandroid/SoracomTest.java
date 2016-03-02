@@ -4,14 +4,13 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
-import com.lyricaloriginal.soracom_api_android.test.BuildConfig;
+import com.lyricaloriginal.soracom_api_android.BuildConfig;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;

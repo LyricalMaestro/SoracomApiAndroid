@@ -21,13 +21,17 @@ class AssetsUtils {
     private AssetsUtils() {
     }
 
+    private static InputStream openFile(String filename) throws IOException {
+        return AssetsUtils.class.getClassLoader().getResourceAsStream(filename);
+    }
+
     static List<String> readAssetsText(Context context, String assetName) throws IOException {
         InputStream is = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
         List<String> lines = new ArrayList<String>();
         try {
-            is = context.getAssets().open(assetName);
+            is = openFile(assetName);
             isr = new InputStreamReader(is, "UTF-8");
             br = new BufferedReader(isr);
             String line = null;
