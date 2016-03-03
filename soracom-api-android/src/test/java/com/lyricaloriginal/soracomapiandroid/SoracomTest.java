@@ -10,10 +10,6 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RuntimeEnvironment;
-import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,8 +20,6 @@ import retrofit.Response;
 /**
  * Created by LyricalMaestro on 2016/03/02.
  */
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SoracomTest {
 
     private final String IMSI = "TARGET_IMSI";
@@ -34,8 +28,7 @@ public class SoracomTest {
 
     @Before
     public void setup() throws IOException {
-        List<String> lines = AssetsUtils.readAssetsText(
-                RuntimeEnvironment.application, "Account.txt");
+        List<String> lines = AssetsUtils.readAssetsText("Account.txt");
         String email = lines.get(0).split("=")[1];
         String password = lines.get(1).split("=")[1];
 
