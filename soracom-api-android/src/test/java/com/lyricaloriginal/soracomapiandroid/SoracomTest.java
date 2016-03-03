@@ -1,13 +1,19 @@
 package com.lyricaloriginal.soracomapiandroid;
 
-import android.support.test.runner.AndroidJUnit4;
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
+import com.lyricaloriginal.soracom_api_android.BuildConfig;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RuntimeEnvironment;
+import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,17 +21,12 @@ import java.util.List;
 import retrofit.Call;
 import retrofit.Response;
 
-
 /**
- * 動作確認用クラス。
- * <p/>
- * Created by LyricalMaestro on 2016/01/03.
+ * Created by LyricalMaestro on 2016/03/02.
  */
-@RunWith(AndroidJUnit4.class)
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SoracomTest {
-
-    private final String EMAIL = "YOUR_EMAIL";
-    private final String password = "YOUR_PASSWORD";
 
     private final String IMSI = "TARGET_IMSI";
 
@@ -33,8 +34,13 @@ public class SoracomTest {
 
     @Before
     public void setup() throws IOException {
+        List<String> lines = AssetsUtils.readAssetsText(
+                RuntimeEnvironment.application, "Account.txt");
+        String email = lines.get(0).split("=")[1];
+        String password = lines.get(1).split("=")[1];
+
         Call<AuthInfo> call = Soracom.API.auth(
-                new AuthRequest(EMAIL, password));
+                new AuthRequest(email, password));
         Response<AuthInfo> resp = call.execute();
         if (!resp.isSuccess()) {
             Assert.fail("認証に失敗しました。 code = " + resp.code());
