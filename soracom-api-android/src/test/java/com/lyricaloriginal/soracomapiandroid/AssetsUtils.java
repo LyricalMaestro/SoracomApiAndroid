@@ -21,11 +21,7 @@ class AssetsUtils {
     private AssetsUtils() {
     }
 
-    private static InputStream openFile(String filename) throws IOException {
-        return AssetsUtils.class.getClassLoader().getResourceAsStream(filename);
-    }
-
-    static List<String> readAssetsText(Context context, String assetName) throws IOException {
+    static List<String> readAssetsText(String assetName) throws IOException {
         InputStream is = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
@@ -44,6 +40,10 @@ class AssetsUtils {
             closeQuietly(is);
         }
         return lines;
+    }
+
+    private static InputStream openFile(String filename) throws IOException {
+        return AssetsUtils.class.getClassLoader().getResourceAsStream(filename);
     }
 
     private static void closeQuietly(InputStream is) {
