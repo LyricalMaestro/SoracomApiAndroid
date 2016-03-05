@@ -190,5 +190,22 @@ public final class Soracom {
                 @Query("to") int to,
                 @Query("period") String period
         );
+
+        /*
+            Groups
+         */
+
+        /**
+         * Groupの一覧を返す
+         *
+         * @param apiKey APIキー
+         * @param token Token
+         * @return Groupオブジェクトの一覧
+         */
+        @GET("groups")
+        Call<List<Group>> groups(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token
+        );
     }
 }

@@ -58,7 +58,23 @@ public class SoracomTest {
         }
         List<AirStats> lists = resp.body();
         for (AirStats airStats : lists) {
-            Log.d("SoracomApi", airStats.toString());
+            System.out.println(airStats.toString());
+        }
+    }
+
+    @Test
+    public void groups() throws IOException{
+        Call<List<Group>> call = Soracom.API.groups(
+                mAuthInfo.apiKey,
+                mAuthInfo.token
+        );
+        Response<List<Group>> resp = call.execute();
+        if (!resp.isSuccess()) {
+            Assert.fail("グループ一覧に失敗 code = " + resp.code());
+        }
+        List<Group> lists = resp.body();
+        for (Group group : lists) {
+            System.out.println(group.toString());
         }
     }
 }
