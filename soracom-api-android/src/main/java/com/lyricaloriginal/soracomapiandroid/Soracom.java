@@ -199,13 +199,43 @@ public final class Soracom {
          * Groupの一覧を返す
          *
          * @param apiKey APIキー
-         * @param token Token
+         * @param token  Token
          * @return Groupオブジェクトの一覧
          */
         @GET("groups")
         Call<List<Group>> groups(
                 @Header("X-Soracom-API-Key") String apiKey,
                 @Header("X-Soracom-Token") String token
+        );
+
+        /**
+         * 指定したIDのGroupの情報を取得する
+         *
+         * @param apiKey  APIキー
+         * @param token   Token
+         * @param groupId groupId
+         * @return 指定したgroupIdに該当するGroupオブジェクト
+         */
+        @GET("groups/{group_id}")
+        Call<Group> group(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Path("group_id") String groupId
+        );
+
+        /**
+         * Group IDで指定されたGroupに属するSubscriberの一覧を返す
+         *
+         * @param apiKey  APIキー
+         * @param token   Token
+         * @param groupId groupId
+         * @return 指定したGroupIdに属するSubscriberの一覧
+         */
+        @GET("groups/{group_id}/subscribers")
+        Call<List<SubScriber>> findSubscribersByGroupId(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Path("group_id") String groupId
         );
     }
 }

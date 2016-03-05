@@ -76,5 +76,17 @@ public class SoracomTest {
         for (Group group : lists) {
             System.out.println(group.toString());
         }
+
+        String groupId = lists.get(0).groupId;
+        Call<Group> call2 = Soracom.API.group(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                groupId
+        );
+        Response<Group> resp2 = call2.execute();
+        if (!resp2.isSuccess()) {
+            Assert.fail("グループ一覧に失敗 code = " + resp.code());
+        }
+        System.out.println(resp2.body());
     }
 }
