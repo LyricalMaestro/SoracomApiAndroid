@@ -18,11 +18,13 @@ import retrofit.Call;
 import retrofit.Response;
 
 /**
+ * SORACOM APIのテストクラス
+ *
  * Created by LyricalMaestro on 2016/03/02.
  */
 public class SoracomTest {
 
-    private final String IMSI = "TARGET_IMSI";
+    private final String IMSI = "440103144923065";
 
     private AuthInfo mAuthInfo = null;
 
@@ -105,5 +107,41 @@ public class SoracomTest {
         }
         Group group = resp.body();
         System.out.println(group);
+
+        Call<SubScriber> call2 = Soracom.API.setGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                IMSI,
+                group
+        );
+        Response<SubScriber> resp2 = call2.execute();
+        if(!resp2.isSuccess()){
+            Assert.fail("指定したIMSIにグループせっていしっぱい code = " + resp2.code());
+        }
+        System.out.println(resp2.body().toString());
+
+        Call<SubScriber> call3 = Soracom.API.unsetGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                IMSI
+        );
+        Response<SubScriber> resp3 = call3.execute();
+        if(!resp3.isSuccess()){
+            Assert.fail("指定したIMSIにグループせっていしっぱい code = " + resp3.code());
+        }
+        System.out.println(resp3.body().toString());
+
+        Call<Void> call4 = Soracom.API.deleteGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                group.groupId
+        );
+        Response<Void> resp4 = call4.execute();
+        if(!resp4.isSuccess()){
+            Assert.fail("Group削除失敗! code =" + resp4.code());
+        }
+        System.out.println(group.groupId + "削除成功");
     }
+
+
 }

@@ -6,6 +6,7 @@ import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.http.Body;
+import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
@@ -166,6 +167,38 @@ public final class Soracom {
                 @Path("imsi") String imsi
         );
 
+        /**
+         * 指定されたSubscriberの所属先Groupを指定あるいは上書き変更
+         *
+         * @param apiKey APIキー
+         * @param token  Token
+         * @param imsi   対象IMSI
+         * @param group  セット対象Group
+         * @return callオブジェクト
+         */
+        @POST("subscribers/{imsi}/set_group")
+        Call<SubScriber> setGroup(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Path("imsi") String imsi,
+                @Body Group group
+        );
+
+        /**
+         * 指定されたSubscriberのGroup指定を解除
+         *
+         * @param apiKey APIキー
+         * @param token  Token
+         * @param imsi   対象IMSI
+         * @return callオブジェクト
+         */
+        @POST("subscribers/{imsi}/unset_group")
+        Call<SubScriber> unsetGroup(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Path("imsi") String imsi
+        );
+
         /*
             Stats
          */
@@ -241,8 +274,8 @@ public final class Soracom {
         /**
          * 新規にGroupを作成します。
          *
-         * @param apiKey  APIキー
-         * @param token   Token
+         * @param apiKey       APIキー
+         * @param token        Token
          * @param groupRequest リクエストオブジェクト
          * @return callオブジェクト
          */
@@ -251,6 +284,21 @@ public final class Soracom {
                 @Header("X-Soracom-API-Key") String apiKey,
                 @Header("X-Soracom-Token") String token,
                 @Body CreateGroupRequest groupRequest
+        );
+
+        /**
+         * Group IDで指定されたGroupを削除する
+         *
+         * @param apiKey  APIキー
+         * @param token   Token
+         * @param groupId groupId
+         * @return callオブジェクト
+         */
+        @DELETE("groups/{group_id}")
+        Call<Void> deleteGroup(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Path("group_id") String groupId
         );
     }
 }
