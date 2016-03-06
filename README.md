@@ -3,7 +3,69 @@ Android用SoracomApiライブラリ。
 
 Square社のRetrofit-2.0.0beta2を使って作成しています。
 
-最新バージョンは1.1.1です。
+最新バージョンは1.2.0です。
+
+# 現在対応しているAPI
+現在は以下のAPIに対応しています。
+
+・/auth
+
+認証用API
+
+・/subscribers
+
+登録しているSIM一覧取得
+
+・/subscribers/{imsi}
+
+指定したIMSIの情報を取得
+
+・/subscribers/{imsi}/update_speed_class
+
+指定したIMSIの速度クラスを変更
+
+・/subscribers/{imsi}/activate
+
+指定したIMSIの状態を「使用中」に変更
+
+・/subscribers/{imsi}/deactivate
+
+指定したIMSIの状態を「休止中」に変更
+
+・/subscribers/{imsi}/set_expire_time
+
+指定されたSubscriberの有効期限を更新
+
+・/subscribers/{imsi}/unset_expire_time
+
+指定されたSubscriberの有効期限を削除して無期限に変更
+
+・/subscribers/{imsi}/set_group
+
+指定されたSubscriberの所属先Groupを指定あるいは上書き変更
+
+・/subscribers/{imsi}/unset_group
+
+指定されたSubscriberのGroup指定を解除
+
+・/stats/air/subscribers/{imsi}
+
+指定したIMSIの通信量履歴を取得
+
+・/groups(GET)
+Groupの一覧を返す
+
+・/groups(POST)
+Groupを新規作成する
+
+・/groups/{group_id}(GET)
+Group IDで指定されたGroupを返す
+
+・/groups/{group_id}(DELETE)
+Group IDで指定されたGroupを削除する
+
+・/groups/{group_id}/subscribers
+Group IDで指定されたGroupに属するSubscriberの一覧を返す
 
 # Downloads
 
