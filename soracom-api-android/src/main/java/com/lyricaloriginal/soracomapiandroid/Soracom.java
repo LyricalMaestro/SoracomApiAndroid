@@ -237,5 +237,20 @@ public final class Soracom {
                 @Header("X-Soracom-Token") String token,
                 @Path("group_id") String groupId
         );
+
+        /**
+         * 新規にGroupを作成します。
+         *
+         * @param apiKey  APIキー
+         * @param token   Token
+         * @param groupRequest リクエストオブジェクト
+         * @return callオブジェクト
+         */
+        @POST("groups")
+        Call<Group> createGroup(
+                @Header("X-Soracom-API-Key") String apiKey,
+                @Header("X-Soracom-Token") String token,
+                @Body CreateGroupRequest groupRequest
+        );
     }
 }
