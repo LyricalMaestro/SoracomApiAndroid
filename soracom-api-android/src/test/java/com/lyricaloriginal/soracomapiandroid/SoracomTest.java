@@ -24,7 +24,7 @@ import retrofit.Response;
  */
 public class SoracomTest {
 
-    private final String IMSI = "440103144923065";
+    private final String IMSI = "TEST_IMSI";
 
     private AuthInfo mAuthInfo = null;
 
