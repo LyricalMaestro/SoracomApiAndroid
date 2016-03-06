@@ -53,18 +53,23 @@ Square社のRetrofit-2.0.0beta2を使って作成しています。
 指定したIMSIの通信量履歴を取得
 
 ・/groups(GET)
+
 Groupの一覧を返す
 
 ・/groups(POST)
+
 Groupを新規作成する
 
 ・/groups/{group_id}(GET)
+
 Group IDで指定されたGroupを返す
 
 ・/groups/{group_id}(DELETE)
+
 Group IDで指定されたGroupを削除する
 
 ・/groups/{group_id}/subscribers
+
 Group IDで指定されたGroupに属するSubscriberの一覧を返す
 
 # Downloads
