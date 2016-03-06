@@ -18,11 +18,13 @@ import retrofit.Call;
 import retrofit.Response;
 
 /**
+ * SORACOM APIのテストクラス
+ *
  * Created by LyricalMaestro on 2016/03/02.
  */
 public class SoracomTest {
 
-    private final String IMSI = "TEST_IMSI";
+    private final String IMSI = "440103144923065";
 
     private AuthInfo mAuthInfo = null;
 
@@ -128,6 +130,17 @@ public class SoracomTest {
             Assert.fail("指定したIMSIにグループせっていしっぱい code = " + resp3.code());
         }
         System.out.println(resp3.body().toString());
+
+        Call<Void> call4 = Soracom.API.deleteGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                group.groupId
+        );
+        Response<Void> resp4 = call4.execute();
+        if(!resp4.isSuccess()){
+            Assert.fail("Group削除失敗! code =" + resp4.code());
+        }
+        System.out.println(group.groupId + "削除成功");
     }
 
 
