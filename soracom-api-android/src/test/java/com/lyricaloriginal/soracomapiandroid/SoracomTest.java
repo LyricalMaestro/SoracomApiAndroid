@@ -22,7 +22,7 @@ import retrofit.Response;
  */
 public class SoracomTest {
 
-    private final String IMSI = "TARGET_IMSI";
+    private final String IMSI = "TEST_IMSI";
 
     private AuthInfo mAuthInfo = null;
 
@@ -105,5 +105,30 @@ public class SoracomTest {
         }
         Group group = resp.body();
         System.out.println(group);
+
+        Call<SubScriber> call2 = Soracom.API.setGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                IMSI,
+                group
+        );
+        Response<SubScriber> resp2 = call2.execute();
+        if(!resp2.isSuccess()){
+            Assert.fail("指定したIMSIにグループせっていしっぱい code = " + resp2.code());
+        }
+        System.out.println(resp2.body().toString());
+
+        Call<SubScriber> call3 = Soracom.API.unsetGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                IMSI
+        );
+        Response<SubScriber> resp3 = call3.execute();
+        if(!resp3.isSuccess()){
+            Assert.fail("指定したIMSIにグループせっていしっぱい code = " + resp3.code());
+        }
+        System.out.println(resp3.body().toString());
     }
+
+
 }
