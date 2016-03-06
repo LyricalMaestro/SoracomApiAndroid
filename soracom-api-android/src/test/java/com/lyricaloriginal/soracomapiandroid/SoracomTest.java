@@ -89,4 +89,21 @@ public class SoracomTest {
         }
         System.out.println(resp2.body());
     }
+
+    @Test
+    public void createGroup() throws IOException {
+        CreateGroupRequest request = new CreateGroupRequest();
+        request.tags.put("name", "APIから作りました");
+        Call<Group> call = Soracom.API.createGroup(
+                mAuthInfo.apiKey,
+                mAuthInfo.token,
+                request
+        );
+        Response<Group> resp = call.execute();
+        if(!resp.isSuccess()){
+            Assert.fail("グループ作成にしっぱい code = " + resp.code());
+        }
+        Group group = resp.body();
+        System.out.println(group);
+    }
 }
